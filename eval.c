@@ -484,6 +484,8 @@ SV** evalARRscalar(AV* av) {
             vv = perl_get_hv(varname, 1);
             key = SVt_PV(index);
             ptr = hv_fetch(vv, key, strlen(key), 0);
+            if (!ptr)
+                ptr = &g_undef;
             break;
         default:
             printf( "evalARRscalar - Not yet implemented\n" );
