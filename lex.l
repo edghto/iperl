@@ -33,7 +33,7 @@ for			{if(v) printf(" FOR "); yylval.i=i++; block++; return FOR;}
                 p_cnt--; go=1;
                 return ')';
             }
-\{			{if(v) printf(" { "); cb_cnt++; return '{';}
+\{			{if(v) printf(" { "); block++; cb_cnt++; return '{';}
 \}			{
                 if(v) 
                     printf(" } "); 
@@ -47,9 +47,9 @@ for			{if(v) printf(" FOR "); yylval.i=i++; block++; return FOR;}
                 sb_cnt--; go=1;
                 return ']';
             }
-if			{if(v) printf(" IF "); block++; return IF;}
-else		{if(v) printf(" ELSE "); block++; return ELSE;}
-elsif		{if(v) printf(" ELSIF "); block++; return ELSIF;}
+if			{if(v) printf(" IF "); return IF;}
+else		{if(v) printf(" ELSE "); return ELSE;}
+elsif		{if(v) printf(" ELSIF "); return ELSIF;}
 
 "-"			{if(v) printf(" - "); return '-';}
 "+"			{if(v) printf(" + "); return '+';}
