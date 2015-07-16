@@ -25,12 +25,12 @@
 
 %%
 
-for			{if(v) printf(" FOR "); yylval.i=i++; block++; return FOR;}
-\(			{if(v) printf(" ( "); p_cnt++; return '(';}
+for			{if(v) printf(" FOR "); yylval.i=i++; return FOR;}
+\(			{if(v) printf(" ( "); block++; p_cnt++; return '(';}
 \)			{
                 if(v) 
                     printf(" ) "); 
-                p_cnt--; go=1;
+                p_cnt--; block--; go=1;
                 return ')';
             }
 \{			{if(v) printf(" { "); block++; cb_cnt++; return '{';}
@@ -40,11 +40,11 @@ for			{if(v) printf(" FOR "); yylval.i=i++; block++; return FOR;}
                 cb_cnt--; block--; go=1;
                 return '}';
             }
-\[			{if(v) printf(" [ "); sb_cnt++; return '[';}
+\[			{if(v) printf(" [ "); block++; sb_cnt++; return '[';}
 \]			{
                 if(v) 
                     printf(" ] "); 
-                sb_cnt--; go=1;
+                sb_cnt--; block--; go=1;
                 return ']';
             }
 if			{if(v) printf(" IF "); return IF;}
