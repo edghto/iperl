@@ -1,4 +1,4 @@
-CFLAGS=-Wall -std=c99 -g -c
+CFLAGS=-Wall -std=c99 -g -c 
 LFAGS=-lfl
 CC=gcc
 
@@ -7,7 +7,7 @@ Debug: lex.yy.c syntax.tab.c obj/HV.o obj/AV.o obj/SV.o obj/GV.o obj/utils.o obj
 	$(CC) -g -o iperl lex.yy.c syntax.tab.c obj/HV.o obj/AV.o obj/SV.o obj/GV.o obj/utils.o obj/AST.o obj/eval.o $(LFAGS)
 
 iperl: lex.yy.c syntax.tab.c obj/HV.o obj/AV.o obj/SV.o obj/GV.o obj/utils.o obj/AST.o obj/eval.o
-	$(CC) -g -o iperl lex.yy.c syntax.tab.c obj/HV.o obj/AV.o obj/SV.o obj/GV.o obj/utils.o obj/AST.o obj/eval.o $(LFAGS)
+	$(CC) -DYYDEBUG=1 -DYYERROR_VERBOSE=1 -g -o iperl lex.yy.c syntax.tab.c obj/HV.o obj/AV.o obj/SV.o obj/GV.o obj/utils.o obj/AST.o obj/eval.o $(LFAGS)
 
 obj/eval.o: eval.c eval.h kernel.h SV.h AV.h HV.h GV.h utils.h AST.h
 	$(CC) $(CFLAGS) eval.c -o obj/eval.o
